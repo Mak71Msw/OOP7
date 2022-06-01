@@ -3,6 +3,7 @@
 //
 #pragma once
 
+#include <deque>
 #include <sstream>
 #include <iostream>
 #include <iomanip>
@@ -17,22 +18,13 @@ class address;
 
 class letter
 {
-private:
-    double price;
-
 public:
+    double price;
     fio fio_recipient;
     address recipient;
     address sender;
 
     static int count;
-
-    double GetPrice() {return price;};
-
-    void SetPrice(double new_price)
-    {
-        price = new_price;
-    }
 
     letter()
     {
@@ -40,9 +32,15 @@ public:
         price = 0.0;
     }
 
-    friend void Input(letter* Obj,int amount);
-    friend void SearchRecipient(letter* Obj, int amount);
-    friend void SortedPrice(letter* Obj, int amount);
-    friend void Save(letter* Obj, int amount, std::string filename);
-    friend void Read(letter* &Obj, int amount, std::string filename);
+    letter& operator = (const letter &equal);
+    friend int Delete_end(std::deque<letter> Myletters, int amount);
+    friend void SearchRecipient(std::deque<letter> Myletters, int amount);
+    friend void SortedPrice(std::deque<letter> Myletters);
+    friend void Save(std::deque<letter> Myletters, std::string filename);
+    friend void Read(std::deque<letter> &Myletters, int amount, std::string filename);
+
+    friend bool operator>(const letter &s_1,const letter &s_2);
+    friend bool operator<=(const letter &s_1,const letter &s_2);
+    friend bool operator<(const letter &s_1,const letter &s_2);
+    friend bool operator>=(const letter &s_1,const letter &s_2);
 };

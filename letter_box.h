@@ -13,88 +13,279 @@ class address;
 class letter_box {
 
 public:
-    letter* MyARRAY;
+    std::deque<letter> MyARRAY;
+    int the_longest_Address1 = 55;
+    int the_longest_Address2 = 55;
+    int the_longest_FIO = 35;
+
 
     letter_box()
     {
-        MyARRAY = nullptr;
+        MyARRAY;
+    }
+
+    double CheckPrice()
+    {
+        while (true)
+        {
+            std::cout << "Стоимость письма: ";
+            double a;
+            std::cin >> a;
+
+            if (std::cin.fail() or (a < 0))
+            {
+                std::cin.clear();
+                std::cin.ignore(32767,'\n');
+            }
+            else
+                return a;
+        }
+    }
+
+    std::string CheckCountry()
+    {
+        int i;
+        std::string str;
+        do{
+            std::cout<<"Страна: ";
+            std::cin>>str;
+
+            for(i=0;str[i];i++)
+            {
+                if((str[i]>='0' and str[i]<='9' and str[i]) or (str[i]<='/' and str[i]>='!')
+                   or (str[i]<='@' and str[i]>=':') or (str[i]<='`' and str[i]>='[')
+                   or (str[i]<='~' and str[i]>='{'))
+                    break;
+            }
+
+            if(str[i]) {
+                std::cout << "Нужно вводить буквы!" << std::endl << "Повторите ввод!!!" << std::endl;
+            }
+
+        }while(str[i]);
+
+        return str;
+    }
+
+    std::string CheckCity()
+    {
+        int i;
+        std::string str;
+        do{
+            std::cout<<"Город: ";
+            std::cin>>str;
+
+            for(i=0;str[i];i++)
+            {
+                if((str[i]>='0' and str[i]<='9' and str[i]) or (str[i]<='/' and str[i]>='!')
+                   or (str[i]<='@' and str[i]>=':') or (str[i]<='`' and str[i]>='[')
+                   or (str[i]<='~' and str[i]>='{'))
+                    break;
+            }
+
+            if(str[i]) {
+                std::cout << "Нужно вводить буквы!" << std::endl << "Повторите ввод!!!" << std::endl;
+            }
+
+        }while(str[i]);
+
+        return str;
+    }
+
+    std::string CheckHouse()
+    {
+        int i;
+        std::string str;
+        do{
+            std::cout<<"Дом/Корпус: ";
+            std::cin>>str;
+
+            for(i=0;str[i];i++)
+            {
+                if((str[i]<='/' and str[i]>='!') or (str[i]<='@' and str[i]>=':')
+                   or (str[i]<='`' and str[i]>='[') or (str[i]<='~' and str[i]>='{'))
+                    break;
+            }
+
+            if(str[i]) {
+                std::cout << "У номера дома нет странных символов!!!" << std::endl << "Повторите ввод!!!" << std::endl;
+            }
+
+        }while(str[i]);
+
+        return str;
+    }
+
+    std::string CheckSurname()
+    {
+        int i;
+        std::string str;
+        do{
+            std::cout<<"Фамилия: ";
+            std::cin>>str;
+
+            for(i=0;str[i];i++)
+            {
+                if((str[i]>='0' and str[i]<='9' and str[i]) or (str[i]<='/' and str[i]>='!')
+                   or (str[i]<='@' and str[i]>=':') or (str[i]<='`' and str[i]>='[')
+                   or (str[i]<='~' and str[i]>='{'))
+                    break;
+            }
+
+            if(str[i]) {
+                std::cout << "Нужно вводить буквы!" << std::endl << "Повторите ввод!!!" << std::endl;
+            }
+
+        }while(str[i]);
+
+        return str;
+    }
+
+    std::string CheckName()
+    {
+        int i;
+        std::string str;
+        do{
+            std::cout<<"Имя: ";
+            std::cin>>str;
+
+            for(i=0;str[i];i++)
+            {
+                if((str[i]>='0' and str[i]<='9' and str[i]) or (str[i]<='/' and str[i]>='!')
+                   or (str[i]<='@' and str[i]>=':') or (str[i]<='`' and str[i]>='[')
+                   or (str[i]<='~' and str[i]>='{'))
+                    break;
+            }
+
+            if(str[i]) {
+                std::cout << "Нужно вводить буквы!" << std::endl << "Повторите ввод!!!" << std::endl;
+            }
+
+        }while(str[i]);
+
+        return str;
+    }
+
+    std::string CheckPatronymic()
+    {
+        int i;
+        std::string str;
+        do{
+            std::cout<<"Отчество: ";
+            std::cin>>str;
+
+            for(i=0;str[i];i++)
+            {
+                if((str[i]>='0' and str[i]<='9' and str[i]) or (str[i]<='/' and str[i]>='!')
+                   or (str[i]<='@' and str[i]>=':') or (str[i]<='`' and str[i]>='[')
+                   or (str[i]<='~' and str[i]>='{'))
+                    break;
+            }
+
+            if(str[i]) {
+                std::cout << "Нужно вводить буквы!" << std::endl << "Повторите ввод!!!" << std::endl;
+            }
+        }while(str[i]);
+
+        return str;
     }
 
     void AddElement() {
-        if (letter::count == 0)
-        {
-            MyARRAY = new letter[letter::count + 1];
-            Input(MyARRAY, letter::count);
-            letter::count++;
-        }
-        else if (letter::count != 0)
-        {
-            int c = letter::count;
-            letter* tempObj = new letter[c];
-            letter::count = c;
 
-            for (int i = 0; i < letter::count; i++) {
-                tempObj[i] = MyARRAY[i];
+
+        bool exit=false;
+        while(!exit)
+        {
+            //
+            std::cout << "Menu: \n(1) - Add to the beginning\n(2) - Add to the end\n(3) - Exit\n";
+            //
+            int select=0;
+            std::cout << ("Select function:\n");
+            scanf("%d",&select);
+            switch(select)
+            {
+                case 1:{
+                    letter::count +=1;
+                    letter letter;
+                    std::cout << "Адрес получателя" << std::endl;
+                    letter.recipient.country = CheckCountry();
+                    letter.recipient.city = CheckCity();
+                    letter.recipient.house = CheckHouse();
+
+                    std::cout << "Адрес отправителя" << std::endl;
+                    letter.sender.country = CheckCountry();
+                    letter.sender.city = CheckCity();
+                    letter.sender.house = CheckHouse();
+
+                    std::cout << "ФИО получателя" << std::endl;
+                    letter.fio_recipient.surname_recipient = CheckSurname();
+                    letter.fio_recipient.name_recipient = CheckName();
+                    letter.fio_recipient.patronymic_recipient = CheckPatronymic();
+
+                    letter.price = CheckPrice() ;
+                    std::cout << std::endl;
+
+                    MyARRAY.push_front(letter);
+                    break;
+                }
+                case 2:{
+                    letter::count +=1;
+                    letter letter;
+                    std::cout << "Адрес получателя" << std::endl;
+                    letter.recipient.country = CheckCountry();
+                    letter.recipient.city = CheckCity();
+                    letter.recipient.house = CheckHouse();
+
+                    std::cout << "Адрес отправителя" << std::endl;
+                    letter.sender.country = CheckCountry();
+                    letter.sender.city = CheckCity();
+                    letter.sender.house = CheckHouse();
+
+                    std::cout << "ФИО получателя" << std::endl;
+                    letter.fio_recipient.surname_recipient = CheckSurname();
+                    letter.fio_recipient.name_recipient = CheckName();
+                    letter.fio_recipient.patronymic_recipient = CheckPatronymic();
+
+                    letter.price = CheckPrice() ;
+                    std::cout << std::endl;
+
+                    MyARRAY.push_back(letter);
+                    break;
+                }
+                case 3:{
+                    exit=true;
+                    break;
+                }
+                default:{
+                    std::cout<<("Invalid function number!");
+
+                    //
+                    }
+
+                }
+
             }
-            delete[] MyARRAY;
-            MyARRAY = tempObj;
-
-            Input(MyARRAY, letter::count);
             letter::count++;
         }
-    }
 
-    void Output()
+
+    void Output() const
     {
-        int a = MyARRAY[0].recipient.GetCountry().length()+MyARRAY[0].recipient.GetCity().length()+MyARRAY[0].recipient.GetHouse().length()+28;
-        int b = MyARRAY[0].sender.GetCountry().length()+MyARRAY[0].sender.GetCity().length()+MyARRAY[0].sender.GetHouse().length()+28;
-        int c = MyARRAY[0].fio_recipient.GetSurname().length()+2;
-        int d = MyARRAY[0].fio_recipient.GetName().length()+2;
-        int e = MyARRAY[0].fio_recipient.GetPatronymic().length()+2;
-
-        for (int i = 0; i < letter::count - 1; i++) {
-            for (int j = i + 1; j < letter::count; j++) {
-                if(MyARRAY[j].recipient.GetCountry().length()+MyARRAY[j].recipient.GetCity().length()+MyARRAY[j].recipient.GetHouse().length()
-                > MyARRAY[i].recipient.GetCountry().length()+MyARRAY[i].recipient.GetCity().length()+MyARRAY[i].recipient.GetHouse().length()){
-                    a=MyARRAY[j].recipient.GetCountry().length()+MyARRAY[j].recipient.GetCity().length()+MyARRAY[j].recipient.GetHouse().length()+28;
-                }
-
-                else if(MyARRAY[j].sender.GetCountry().length()+MyARRAY[j].sender.GetCity().length()+MyARRAY[j].sender.GetHouse().length()
-                        > MyARRAY[i].sender.GetCountry().length()+MyARRAY[i].sender.GetCity().length()+MyARRAY[i].sender.GetHouse().length()){
-                    b=MyARRAY[j].sender.GetCountry().length()+MyARRAY[j].sender.GetCity().length()+MyARRAY[j].sender.GetHouse().length()+28;
-                }
-
-                else if(MyARRAY[j].fio_recipient.GetSurname().length() > MyARRAY[i].fio_recipient.GetSurname().length()){
-                    c=MyARRAY[j].fio_recipient.GetSurname().length()+2;
-                }
-
-                else if(MyARRAY[j].fio_recipient.GetName().length() > MyARRAY[i].fio_recipient.GetName().length()){
-                    d=MyARRAY[j].fio_recipient.GetName().length()+2;
-                }
-
-                else if(MyARRAY[j].fio_recipient.GetPatronymic().length() > MyARRAY[i].fio_recipient.GetPatronymic().length()){
-                    e=MyARRAY[j].fio_recipient.GetPatronymic().length()+2;
-                }
-            }
-        }
         StreamTable st(std::cout);
-        st.AddCol(a);
-        st.AddCol(b);
-        st.AddCol(c);
-        st.AddCol(d);
-        st.AddCol(e);
-        st.AddCol(15);
+        st.AddCol(the_longest_Address1+2);
+        st.AddCol(the_longest_Address2+2);
+        st.AddCol(the_longest_FIO+2);
+        st.AddCol(10);
 
         st.MakeBorderExt(true);
         st.SetDelimRow(true, '-');
         st.SetDelimCol(true, '|');
 
-        st << "Address Recipient" << "Address Sender" << "Surname" << "Name" << "Patronymic" << "Price";
-        for (int i = 0; i < letter::count; i++)
+        st << "Address Recipient" << "Address Sender" << "FIO Recipient" << "Price";
+        for (auto iter = MyARRAY.begin(); iter != MyARRAY.end(); iter++)
         {
-            st << full_address(MyARRAY[i].recipient) << full_address(MyARRAY[i].sender)
-               << MyARRAY[i].fio_recipient.GetSurname() << MyARRAY[i].fio_recipient.GetName()
-               << MyARRAY[i].fio_recipient.GetPatronymic() << MyARRAY[i].GetPrice();
+            st << full_address(iter->recipient) << full_address(iter->sender)
+            << full_fio(iter->fio_recipient) << iter->price;
         }
     }
 };

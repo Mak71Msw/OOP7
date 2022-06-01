@@ -9,12 +9,13 @@ int CheckMenu()
         std::cout << "2)Добавить новое письмо" << std::endl;
         std::cout << "3)Поиск письма по получателю " << std::endl;
         std::cout << "4)Сортировать по увелечению стоимости" << std::endl;
-        std::cout << "5)Сохранить и выйти" << std::endl;
+        std::cout << "5)Удалить последнее письмо" << std::endl;
+        std::cout << "6)Сохранить и выйти" << std::endl;
         std::cout << "Введите число от 1 до 6" << std::endl;
         int c;
         std::cin >> c;
 
-        if (std::cin.fail() or (c < 1) or (c > 7))
+        if (std::cin.fail() or (c < 1) or (c > 6))
         {
             std::cin.clear();
             std::cin.ignore(32767,'\n');
@@ -47,13 +48,17 @@ int main()
                 break;
 
             case 4:
-                SortedPrice(element.MyARRAY,letter::count);
+                SortedPrice(element.MyARRAY);
                 break;
 
             case 5:
-                Save(element.MyARRAY,letter::count,"OOP3.txt");
+                Delete_end(element.MyARRAY, letter::count);
+                break;
+
+            case 6:
+                Save(element.MyARRAY,"OOP3.txt");
                 break;
         }
-    } while (c != 5);
+    } while (c != 6);
     return 0;
 }

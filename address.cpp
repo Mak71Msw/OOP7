@@ -5,8 +5,16 @@
 #include "address.h"
 #include <iostream>
 
-std::string full_address(address &Obj) {
-    std::string address = "Country:" +Obj.GetCountry()+ " " +
-                          "City:" +Obj.GetCity()+ " " + "House:" +Obj.GetHouse();
+address &address::operator=(const address &equal) {
+    if (this == &equal)
+        return *this;
+    country=equal.country;
+    city=equal.city;
+    house=equal.house;
+    return *this;
+}
+std::string full_address(address Obj) {
+    std::string address = "Country:" +Obj.country+ " " +
+                          "City:" +Obj.city+ " " + "House:" +Obj.house;
     return address;
 }
